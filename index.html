@@ -5,6 +5,44 @@
     <title>Etch a Sketch</title>
 </head>
 <body>
-    
+    <style>
+        #main{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+        .button-wrapper{
+            display: flex;
+            justify-content: center;
+        }
+        button#clear{
+           padding: 10px 10px;
+           margin: 20px 0;
+           border: 1px solid #036;
+           border-radius: 3px;
+        }
+        #container {
+            border: 5px solid #007FFF;
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: flex-start;
+            overflow: hidden;
+        }
+        .square {
+            background-color:  rgb(234, 241, 248);
+        }
+    </style>
+   <div id="main">
+       <div class="button-wrapper">
+       <button id="clear">✨Make new grid✨</button>
+       </div>
+       <div id="container">
+       </div>
+   </div>
 </body>
+<script src="script.js"></script>
 </html>
