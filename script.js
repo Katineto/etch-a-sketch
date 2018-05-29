@@ -1,11 +1,9 @@
 const canvas = document.querySelector('#container')
 const clearBtn = document.querySelector('#clear')
-let lastSize
+const gradientBtn = document.querySelector('#gradient')
+let lastSize = 16
+
 function makeGrid(size) {
-    console.log('make grid function')
-    if(typeof size !== 'number') {
-        console.log('this is not a number')
-    }
     for(let i = 0; i < (size*size); i ++) {
         const oneSquare = document.createElement('div')
         oneSquare.className = 'square'
@@ -26,7 +24,6 @@ function newGrid() {
         for(let i = 0; i < lastSize; i++) {
             const squareToRemove = document.querySelector('div[class="square"]')
             canvas.removeChild(squareToRemove)
-            console.log(canvas)
         }
     }
     //use promt
@@ -40,9 +37,13 @@ function newGrid() {
     //create new grid
     makeGrid(answer)
 }
+function handleGradient() {
+    
+}
 
 canvas.addEventListener('mousemove', draw)
 clearBtn.addEventListener('click', newGrid)
+gradientBtn.addEventListener('click', handleGradient)
 window.onload = function() {
     makeGrid(16)
 }

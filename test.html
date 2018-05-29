@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Solving same task with CSS grid -->
+
+    <style>
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            width: 500px;
+            border: 2px solid olive;
+        }
+        .square{
+            background-color: rgb(208, 243, 231);
+            border: 1px solid white;
+            min-height: 3rem;
+        }
+    </style>
+    <div class="grid-container">
+    </div>
+</body>
+<script>
+    function makeGrid(size) {
+        const container = document.querySelector('.grid-container')
+        for(let i = 0; i < (size*size); i ++) {
+            const oneSquare = document.createElement('div')
+            oneSquare.className = 'square'
+            container.appendChild(oneSquare)
+        } 
+    }
+    makeGrid(4)
+</script>
+</html>
