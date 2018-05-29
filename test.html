@@ -3,36 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">  -->
 </head>
 <body>
     <!-- Solving same task with CSS grid -->
-
+    
     <style>
+        body{
+            font-family: 'Inconsolata', monospace;
+        }
+        .textform-wrapper{
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+        }
         .grid-container{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            width: 500px;
+            margin: 10px auto;
+            grid-template-columns: repeat(5, 1fr);
+            width: 900px;
             border: 2px solid olive;
         }
         .square{
-            background-color: rgb(208, 243, 231);
+            background-color: rgb(52, 90, 104);
             border: 1px solid white;
             min-height: 3rem;
+            opacity: 0.1;
         }
     </style>
+    <div class="textform-wrapper">
+        <form id="form">
+            <input type="text" placeholder="Select any number from 2 to 64">
+        </form>
+    </div>
     <div class="grid-container">
     </div>
 </body>
 <script>
+    const defaultSize = 10
+    const container = document.querySelector('.grid-container')
+    function resetContainer () {
+        while(container.firstChild) {
+            container.removeChild(container.firstChild)
+        }
+    }
     function makeGrid(size) {
-        const container = document.querySelector('.grid-container')
+        resetContainer()
         for(let i = 0; i < (size*size); i ++) {
             const oneSquare = document.createElement('div')
             oneSquare.className = 'square'
             container.appendChild(oneSquare)
-        } 
+        }
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)` 
     }
-    makeGrid(4)
+    
+    const rawInput = document.querySelector('input')
+    const form = document.getElementById('form')
+    function handleInput(e) {
+        const rawToNumber = Number(rawInput.value)
+        makeGrid(rawToNumber)
+        e.preventDefault()
+        form.reset()
+    }
+    let lastTarget
+    function changeOpacity(e){
+        if(e.target.className == 'square' && e.target != lastTarget) {
+            e.target.style.opacity = `${Number(e.target.style.opacity) + 0.3}`
+            lastTarget = e.target
+        }
+    }
+    
+    container.addEventListener('mousemove', changeOpacity)
+    form.addEventListener('submit', handleInput)
+    window.onload = function() {
+        makeGrid(defaultSize)
+    }
 </script>
 </html>
