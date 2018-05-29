@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Etch a Sketch</title>
+</head>
+<body>
+    <style>
+        #main{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+        .button-wrapper{
+            display: flex;
+            justify-content: center;
+        }
+        button#clear, button#gradient{
+            padding: 10px 10px;
+            margin: 20px 20px;
+            border: 1px solid #036;
+            border-radius: 3px;
+        }
+        #container {
+            border: 5px solid #007FFF;
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: flex-start;
+            overflow: hidden;
+        }
+        .square {
+            background-color:  rgb(234, 241, 248);
+        }
+    </style>
+    <div id="main">
+        <div class="button-wrapper">
+            <button id="clear">✨Make new grid✨</button>
+            <button id="gradient">Gradient</button>
+        </div>
+        <div id="container">
+        </div>
+    </div>
+</body>
+<script>
+    const canvas = document.querySelector('#container')
+    const clearBtn = document.querySelector('#clear')
+    const gradientBtn = document.querySelector('#gradient')
+    let lastSize = 16
+    
+    function makeGrid(size) {
+        for(let i = 0; i < (size*size); i ++) {
+            const oneSquare = document.createElement('div')
+            oneSquare.className = 'square'
+            oneSquare.style.height = `${Math.round(800 / size)}px`
+            oneSquare.style.width = `${Math.round(800 / size)}px`
+            canvas.appendChild(oneSquare)
+        } 
+        lastSize = size*size
+    }
+    function draw(e) {
+        if(e.target.className == 'square') {
+            e.target.style.backgroundColor = '#036'
+        }
+    }
+    function newGrid() {
+        //clear the grid
+        if(canvas.childElementCount > 0) {
+            for(let i = 0; i < lastSize; i++) {
+                const squareToRemove = document.querySelector('div[class="square"]')
+                canvas.removeChild(squareToRemove)
+            }
+        }
+        //use promt
+        const answer = window.prompt(`Let's make new grid! How many squares per side?`)
+        answer.trim()
+        const answerToNumber = Number(answer)
+        if(answerToNumber > 64) {
+            window.alert(`That's too big, try again.`)
+            return
+        }   
+        //create new grid
+        makeGrid(answer)
+    }
+    function handleGradient() {
+        
+    }
+    
+    canvas.addEventListener('mousemove', draw)
+    clearBtn.addEventListener('click', newGrid)
+    gradientBtn.addEventListener('click', handleGradient)
+    window.onload = function() {
+        makeGrid(16)
+    }
+</script>
+</html>

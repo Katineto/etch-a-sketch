@@ -2,48 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Etch a Sketch</title>
+    <title>⭐Etch-a-Sketch with CSS grid⭐</title>
 </head>
 <body>
-    <style>
-        #main{
-            display: flex;
-            flex-direction: column;
-            align-content: center;
-        }
-        .button-wrapper{
-            display: flex;
-            justify-content: center;
-        }
-        button#clear, button#gradient{
-           padding: 10px 10px;
-           margin: 20px 20px;
-           border: 1px solid #036;
-           border-radius: 3px;
-        }
-        #container {
-            border: 5px solid #007FFF;
-            width: 800px;
-            height: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-content: flex-start;
-            overflow: hidden;
-        }
-        .square {
-            background-color:  rgb(234, 241, 248);
-        }
-    </style>
-   <div id="main">
-       <div class="button-wrapper">
-       <button id="clear">✨Make new grid✨</button>
-       <button id="gradient">Gradient</button>
-       </div>
-       <div id="container">
-       </div>
-   </div>
+    <!-- Solving same task with CSS grid -->
+    <div class="textform-wrapper">
+        <form id="form">
+            <input type="text" placeholder="Select any number from 2 to 64">
+        </form>
+    </div>
+    <div class="grid-container">
+    </div>
 </body>
+<style>
+    .textform-wrapper{
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+    }
+    .grid-container{
+        display: grid;
+        margin: 10px auto;
+        grid-template-columns: repeat(5, 1fr);
+        width: 900px;
+        border: 2px solid olive;
+    }
+    .square{
+        background-color: rgb(52, 90, 104);
+        border: 1px solid white;
+        min-height: 3rem;
+        opacity: 0.1;
+    }
+</style>
 <script src="script.js"></script>
 </html>
